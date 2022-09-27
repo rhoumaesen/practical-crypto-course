@@ -1,14 +1,13 @@
 from cryptosteganography import CryptoSteganography
 
-
 key = "1111222233334444!"
 crypto_steganography = CryptoSteganography(key)
 print()
 
 ################# transmitter 
-print('The program is looking for an image named ch6_secret_image.png\n')
+print('The program is looking for an image named nebula.png\n')
 origfile = "nebula.png"
-print('The image with the hidden message will be called steg_ch6_secret_image.png\n')
+print('The image with the hidden message will be called mnebula_m..png\n')
 modfile = "mnebula_m.png"
 secretMsg = ""
 message1 = "Sympathy for the favorite nation, facilitating the illusion of an imaginary common "
