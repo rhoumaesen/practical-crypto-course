@@ -1,0 +1,16 @@
+https://drive.google.com/drive/folders/1t5Yk6r96lj-gokTOWcpn1SvQgYMiHsrH
+
+https://github.com/rhoumaesen/practical-crypto-course
+
+https://replit.com/@rhoouma/CSSY2201-Introduction-to-Cryptography
+
+
+talk about :
+-  course outlines and delivery plan
+- Assessments
+- Anaconda and environment settings
+- replit 
+- bcrypt : through anaconda navigator
+- pycryptodome :  through conda command
+- cryptosteganography : pip command
+- openssl : use replit terminal bc it's already an ubuntu machine
