@@ -5,7 +5,7 @@ def reverseCipher(plaintext):
   i = len(plaintext) - 1
   while i >= 0:
     ciphertext = ciphertext + plaintext[i]
-    i = i - 1lab3.py
+    i = i - 1
   return ciphertext
 
   #### encyption
