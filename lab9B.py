@@ -9,3 +9,4 @@ plt.subplot(222), plt.hist(randomimg[:,:,0].ravel(),256,[0,256],color = "red");
 plt.subplot(223), plt.hist(randomimg[:,:,1].ravel(),256,[0,256],color = "green"); 
 plt.subplot(224), plt.hist(randomimg[:,:,2].ravel(),256,[0,256],color = "blue"); 
 plt.show()
+## test
