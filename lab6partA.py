@@ -1,32 +1,38 @@
-from Crypto.PublicKey import RSA
-from Crypto import Random
-from Crypto.Cipher import PKCS1_OAEP
+import hashlib
 import base64
 
-
-random_generator = Random.new().read
-key = RSA.generate(1024, random_generator)
-
-
-publickey = key.publickey()
-encryptor = PKCS1_OAEP.new(publickey)
-encrypted = encryptor.encrypt(b'Hi Bro encrypt this message')
-encrptedbase64=base64.b64encode(encrypted)
-print('encrypted message:', encrypted)
-print()
-f = open('encryptionn.txt', 'w')
-f.write(str(encrypted))
-print(encrptedbase64)
-print()
-f.close()
+data = "secret-message"
+print('data=', data)
 
 
-f = open('encryptionn.txt', 'r')
-message = f.read()
-decryptor = PKCS1_OAEP.new(key)
-decrypted = decryptor.decrypt(encrypted)
-print('decrypted : ', decrypted)
-f = open('encryptionn.txt', 'w')
-f.write(str(message))
-f.write(str(decrypted))
-f.close()
+hash1 = hashlib.sha1(data.encode('utf-8'))
+
+#the fingerprint in bytes
+sign1bytes=hash1.digest()
+print('sign1 without encoding (means in bytes) = ',sign1bytes)
+
+# the fingerprint  in hexadecimal
+signt=hash1.hexdigest()
+print('sign1 in hexadeciaml=', signt)
+
+# the fingerprint  in base64
+signature1 = base64.b64encode(hash1.digest()).decode()
+print("sign1 in base64=",signature1)
+
+
+
+print('size of sign1 in bits= ',8*hash1.digest_size)
+
+
+# here you can explore more hash variants as for sha256 and sha512 
+#and repeat the same steps
+hash2 = hashlib.sha256(data.encode('utf-8'))
+hash3 = hashlib.sha512(data.encode('utf-8'))
+
+signature2 = base64.b64encode(hash2.digest()).decode()
+signature3 = base64.b64encode(hash3.digest()).decode()
+
+print("sign2 in base64=",signature2)
+print("sig3 in base64=",signature3)
+
+# continue coding here to explore the output of hashlib in diferent output formats

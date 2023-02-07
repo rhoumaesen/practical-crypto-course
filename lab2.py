@@ -1,66 +1,65 @@
+########################### Q1 Cesar Encryption ################
+letters = 'abcdefghijklmnopqrstuvwxyz'
 
-################ Question 1 ##################################
-def reverseCipher(plaintext):
-  ciphertext = ''
-  i = len(plaintext) - 1
-  while i >= 0:
-    ciphertext = ciphertext + plaintext[i]
-    i = i - 1
-  return ciphertext
 
-  #### encyption
-plaintext = "If you want to keep a secret, you must hide it."
-ciphertext = reverseCipher (plaintext)
+def enc_caesar(n, plaintext):
+    result = ''
+    for l in plaintext.lower():
+        i = (letters.index(l) + n) % 26
+        result += letters[i]
+
+    return result.lower()
+
+
+plaintext = 'hello'
+ciphertext = enc_caesar(3, plaintext)
 print(ciphertext)
 
-#### Decryption
-recovered=reverseCipher (ciphertext)
+########################### Q2 Cesar Decryption################
+
+
+def dec_caesar(n, ciphertext):
+    result = ''
+    for l in ciphertext.lower():
+        i = (letters.index(l) - n) % 26
+        result += letters[i]
+
+    return result.lower()
+
+
+cipher = 'khoor'
+recovered = dec_caesar(3, cipher)
 print(recovered)
 
-############################################################
+######################### Q3 Brute force of Cesar #######################
+mystery = 'khoor'
+for k in range(len(letters)):
+    #print(k)
+    decrypted = ''
+    for symbol in mystery:
+        if symbol in letters:
+            num = letters.index(symbol)  # get the number of the symbol
+            num = (num - k) % 26
+            decrypted += letters[num]
 
-################ Question 2 ##################################
-import getpass
-import bcrypt
+    print('Key #%s: %s' % (k, decrypted))
+
+########################### Q1 Cesar Encryption : improvement assuming that a text can contain ponctuation POINTS like , -, . / ?! etc ################
+letters = 'abcdefghijklmnopqrstuvwxyz'
 
 
+def enc_caesar(n, plaintext):
+    result = ''
+    for l in plaintext.lower():
+        if l in letters:
+            i = (letters.index(l) + n) % 26
+            result += letters[i]
+        else:
+            result += l
 
- 
-def ask_for_username():
-      print("enter the user name would you like to use...")
-      username = input()
-      return username
- 
- 
+    return result.lower()
 
-def ask_for_password():
-     while True:
-      print("What password would you like to create?")
-      salt=bcrypt.gensalt()
-      p=getpass.getpass()
-      inputstr=str.encode(p)      
-      hashed_password1 = bcrypt.hashpw(inputstr,salt)
-      print(hashed_password1)
-      
-      print("Please enter the password again...")
-      q=getpass.getpass()
-      inputstr2=str.encode(q)
-      hashed_password2 = bcrypt.hashpw(inputstr,salt)
-      print(hashed_password2)
-       
-      if hashed_password1 == hashed_password2:
-        print("Your password is matching...")
-        print("Your username, hashed password and salt is stored in testhash.txt file")        
-        return hashed_password2, salt
-      else:
-        print("Your password do not match. Please retry...")
 
-def store_info(username, hashed_pass, salt):
-#password_file =open_pass_file()
-  with open("testhash.txt", "a" ) as password_file:
-    password_file.write(username  + " | " + "".join(map(chr,hashed_pass ))   + " | " + "".join(map(chr, salt )) + "\n" + "\n")
-   
-    
-username = ask_for_username()
-hashedPass, salt = ask_for_password()
-store_info(username, hashedPass, salt)
+plaintext = 'hello, how are you ? I hope you are fine ! :-)'
+ciphertext = enc_caesar(3, plaintext)
+print(ciphertext)
