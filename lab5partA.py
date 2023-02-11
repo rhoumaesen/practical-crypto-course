@@ -5,7 +5,7 @@ import gmpy2
 import sys
 
 bits=60
-msg="Hello how are y"
+msg="Hello how are you"
 
 p = Crypto.Util.number.getPrime(bits, randfunc=Crypto.Random.get_random_bytes)
 q = Crypto.Util.number.getPrime(bits, randfunc=Crypto.Random.get_random_bytes)
